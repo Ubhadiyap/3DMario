@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4487034, g: 0.4987555, b: 0.57567954, a: 1}
+  m_IndirectSpecularColor: {r: 0.44870305, g: 0.49875504, b: 0.5756791, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -41439,11 +41439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e498ffc8221ec34aa67eb5bdcb0ff47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAt: {fileID: 514937481}
-  camTransform: {fileID: 0}
-  distance: 10
-  currentX: 0
-  currentY: 45
 --- !u!81 &1394338288
 AudioListener:
   m_ObjectHideFlags: 0
@@ -41492,7 +41487,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -63522,8 +63516,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2096184057}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: coins
+  m_TagString: coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
