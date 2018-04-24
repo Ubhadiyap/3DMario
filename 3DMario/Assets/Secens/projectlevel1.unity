@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ca739cfa0c2020b4983210a8b77fe454, type: 2}
 --- !u!4 &560247 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2a23a4f44b4b2d147bfd0fab873034e7, type: 2}
@@ -13419,7 +13419,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &522836329
 MeshRenderer:
@@ -15057,6 +15057,10 @@ Prefab:
     - target: {fileID: 400000, guid: 9a431480e1eb2414ca2c1f937bc71b55, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9a431480e1eb2414ca2c1f937bc71b55, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a431480e1eb2414ca2c1f937bc71b55, type: 2}
@@ -43678,6 +43682,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a23a4f44b4b2d147bfd0fab873034e7, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1667782909 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 9a431480e1eb2414ca2c1f937bc71b55, type: 2}
+  m_PrefabInternal: {fileID: 596753925}
+--- !u!208 &1667782915
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1667782909}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 10, y: 9.212001, z: 8.503}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 8}
+  m_TimeToStationary: 0.5
 --- !u!4 &1672607762 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 61a57be357ebb324aad9c6465cb2a9df, type: 2}
