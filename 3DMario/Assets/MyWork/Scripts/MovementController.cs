@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
@@ -14,13 +16,45 @@ public class MovementController : MonoBehaviour
     private float rot_speed = 0.5f;
     Rigidbody rb;
     Animator anim;
+
+    // Flag For the character if it has the key
+    private bool HasKey;
+
+    // The coins which the character have
+    private int NumOfCoins;
+
+    // Score
+    private int Score;
+
+    // Score text
+    public Text ScoreText;
+
+    // Coins text
+    public Text CoinsText;
+
+    // Key image
+    public Image KeyImage;
+
+    // Key text
+    public Text KeyText;
+
+    // Key Found Color
+    //Color KeyColor = new Color(99f, 32f, 255f, 255f);
+
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         isGrounded = true; //indicate that we are in the ground
+        HasKey = true;
+        NumOfCoins = 0;
+        Score = 0;
+        ScoreText.text = "Score: " + Score.ToString();
+        CoinsText.text = "Coins: " + NumOfCoins.ToString();
+        KeyText.text = "Find The Key!";
     }
+
     void movementControl(string state)
     {
         switch (state)
@@ -101,5 +135,26 @@ public class MovementController : MonoBehaviour
     void OnCollisionEnter()
     {
         isGrounded = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("key"))
+        {
+            other.gameObject.SetActive(false);
+            HasKey = true;
+            KeyImage.color = Color.blue;
+            KeyText.text = "You Have Found The Key";
+        }
+        if (other.gameObject.CompareTag("coin"))
+        {
+            other.gameObject.SetActive(false);
+            NumOfCoins += 1;
+            CoinsText.text = "Coins: " + NumOfCoins.ToString();
+        }
+        if (other.gameObject.CompareTag("uplevel") && HasKey)
+        {
+            SceneManager.LoadScene("level2");
+        }
     }
 }
