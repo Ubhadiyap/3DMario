@@ -1,52 +1,60 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 using System.Collections;
 
-public class Health : NetworkBehaviour {
+public class Health : MonoBehaviour
+{
 
-	public const int maxHealth = 100;
+    public const int maxHealth = 100;
+    public int currentHealth;
+    public int ScoreValue = 15;
 
-	public bool destroyOnDeath;
+    //public Slider healthBar;
+    ParticleSystem hitParticles;
+    public GameObject Player;
 
-	[SyncVar(hook = "OnChangeHealth")]
-	public int currentHealth = maxHealth;
+    public float ParticleTime = 3f;
+    private float ParticleReamainingTime;
+    bool IsHit;
 
-	public RectTransform healthBar;
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        hitParticles = GetComponentInChildren<ParticleSystem>();
+        hitParticles.Pause();
+        IsHit = false;
+    }
 
-	public void TakeDamage(int amount)
-	{
+    private void Update()
+    {
+        if (ParticleReamainingTime < 0 && IsHit)
+        {
+            hitParticles.Pause();
+            IsHit = false;
+        }
+        else
+        {
+            ParticleReamainingTime -= Time.deltaTime;
+        }
+    }
 
-		currentHealth -= amount;
-		if (currentHealth <= 0)
-		{
-			if (destroyOnDeath)
-			{
-				Destroy(gameObject);
-			} 
-			else
-			{
-				currentHealth = maxHealth;
+    public void TakeDamage(int amount, Vector3 hitPoint)
+    {
+        IsHit = true;
+        ParticleReamainingTime = ParticleTime;
+        currentHealth -= amount;
 
-				// called on the Server, will be invoked on the Clients
-				RpcRespawn();
-			}
-		}
-	}
+        // Set the position of the particle system to where the hit was sustained.
+        hitParticles.transform.position = hitPoint;
 
-	void OnChangeHealth (int currentHealth)
-	{
-		healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
-	}
+        // And play the particles.
+        hitParticles.Play();
 
-	[ClientRpc]
-	void RpcRespawn()
-	{        if (isLocalPlayer)
-		{
-			// Set the player’s position to origin
-			transform.position = Vector3.zero;
-		}
-	}
-	
+        if (currentHealth <= 0)
+        {
+            Player.GetComponent<MovementController>().Score += ScoreValue;
+            Destroy(gameObject);
+        }
+    }
+
 }
-

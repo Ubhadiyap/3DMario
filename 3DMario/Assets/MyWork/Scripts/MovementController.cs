@@ -11,7 +11,7 @@ public class MovementController : MonoBehaviour
     public float rotSpeed;
     public float jumpHeight;
     //walk speed
-    private float w_speed = 0.2f;
+    private float w_speed = 0.9f;
     //rotation speed
     private float rot_speed = 0.5f;
     Rigidbody rb;
@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
     private int NumOfCoins;
 
     // Score
-    private int Score;
+    public int Score;
 
     // Score text
     public Text ScoreText;
@@ -38,21 +38,30 @@ public class MovementController : MonoBehaviour
     // Key text
     public Text KeyText;
 
-    // Key Found Color
-    //Color KeyColor = new Color(99f, 32f, 255f, 255f);
+    // Timer to hide the messages
+    public float Timer = .05f;
+    public float TimeRemaining;
+
+    // Eat Text
+    public Text EatText;
+    public Text EatPlusText;
+    private bool TakeEat;
+    private bool TakeEatPlus;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         isGrounded = true; //indicate that we are in the ground
-        HasKey = true;
+        HasKey = false;
         NumOfCoins = 0;
         Score = 0;
         ScoreText.text = "Score: " + Score.ToString();
         CoinsText.text = "Coins: " + NumOfCoins.ToString();
-        KeyText.text = "Find The Key!";
+        TimeRemaining = Timer;
+        TakeEat = false;
+        TakeEatPlus = false;
     }
 
     void movementControl(string state)
@@ -85,6 +94,7 @@ public class MovementController : MonoBehaviour
                 break;
         }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -119,6 +129,7 @@ public class MovementController : MonoBehaviour
                 rotSpeed = 0;
             }
         }
+        #region Other
         var z = Input.GetAxis("Vertical") * speed;
         var y = Input.GetAxis("Horizontal") * rotSpeed;
         transform.Translate(0, 0, z);
@@ -130,6 +141,49 @@ public class MovementController : MonoBehaviour
             rb.AddForce(0, jumpHeight, 0);
             isGrounded = false;
         }
+        #endregion
+
+        TextDisappering();
+        ScoreText.text = "Score: " + Score.ToString();
+    }
+
+    private void TextDisappering()
+    {
+
+        // Eat Text Disappearing
+        if (TimeRemaining == 0 && TakeEat)
+        {
+            EatText.gameObject.SetActive(false);
+            TimeRemaining = Timer;
+            TakeEat = false;
+        }
+        else if (TimeRemaining > 0 && TakeEat)
+        {
+            TimeRemaining -= Time.deltaTime;
+        }
+
+        // EatPlus Text Disappearing
+        if (TimeRemaining < 0 && TakeEatPlus)
+        {
+            EatPlusText.gameObject.SetActive(false);
+            TimeRemaining = Timer;
+            TakeEatPlus = false;
+        }
+        else if (TimeRemaining > 0 && TakeEatPlus)
+        {
+            TimeRemaining = TimeRemaining - Time.deltaTime;
+        }
+
+        // Key Text Disappearing
+        if (TimeRemaining < 0 && HasKey)
+        {
+            KeyText.gameObject.SetActive(false);
+            TimeRemaining = Timer;
+        }
+        else if (TimeRemaining > 0 && HasKey)
+        {
+            TimeRemaining = TimeRemaining - Time.deltaTime;
+        }
     }
 
     void OnCollisionEnter()
@@ -139,6 +193,7 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Detect Key Collision
         if (other.gameObject.CompareTag("key"))
         {
             other.gameObject.SetActive(false);
@@ -146,15 +201,38 @@ public class MovementController : MonoBehaviour
             KeyImage.color = Color.blue;
             KeyText.text = "You Have Found The Key";
         }
+
+        // Detect Coin Collision
         if (other.gameObject.CompareTag("coin"))
         {
             other.gameObject.SetActive(false);
             NumOfCoins += 1;
             CoinsText.text = "Coins: " + NumOfCoins.ToString();
         }
+
+        // Detect Pad Collision To Change Scene
         if (other.gameObject.CompareTag("uplevel") && HasKey)
         {
             SceneManager.LoadScene("level2");
+        }
+
+        // Detect Score Eat Collision
+        if (other.gameObject.CompareTag("eat"))
+        {
+            other.gameObject.SetActive(false);
+            EatText.gameObject.SetActive(true);
+            TimeRemaining = Timer;
+            Score += 50;
+            TakeEat = true;
+        }
+
+        // Detect Shield Eat Collision
+        if (other.gameObject.CompareTag("eatplus"))
+        {
+            other.gameObject.SetActive(false);
+            EatPlusText.gameObject.SetActive(true);
+            TimeRemaining = Timer;
+            TakeEatPlus = true;
         }
     }
 }

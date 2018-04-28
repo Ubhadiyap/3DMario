@@ -7,7 +7,6 @@ public class ThirdPersonCamera : MonoBehaviour
 	
 	public Transform lookAt;
 
-	public Transform camTransform;
 	//the distance between player and camera
 	public float distance = 10.0f;
 
@@ -16,19 +15,13 @@ public class ThirdPersonCamera : MonoBehaviour
 	//private float sensitivityX = 4.0f;
 	//private float sensitivityY = 1.0f;
 
-	private void Start()
-	{
-		camTransform = transform;
-	}
-
-
 	private void LateUpdate()
 	{
 		//added by adel
 		transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		Vector3 dir = new Vector3(0, 0, -distance);
 		Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-		camTransform.position = lookAt.position + rotation * dir;
-		camTransform.LookAt(lookAt.position);
+		transform.position = lookAt.position + rotation * dir;
+		transform.LookAt(lookAt.position);
 	}
 }
