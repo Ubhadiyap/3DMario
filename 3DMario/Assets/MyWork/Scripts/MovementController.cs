@@ -234,5 +234,12 @@ public class MovementController : MonoBehaviour
             TimeRemaining = Timer;
             TakeEatPlus = true;
         }
+
+        // Detect Shield Eat Collision
+        if (other.gameObject.CompareTag("finish"))
+        {
+            SceneManager.LoadScene(3);
+        }
+
     }
 }
