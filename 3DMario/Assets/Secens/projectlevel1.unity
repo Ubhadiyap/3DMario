@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 487c9a4a22d809b41975a46fd773f121,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -5858,11 +5859,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2111025
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -199.1
+      value: -266.2
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -36705,15 +36706,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0011901855
+      value: -92.65
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2111025
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -257
+      value: -335.89
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42873,15 +42874,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -123.7
+      value: -130.93
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2111025
+      value: 1.83
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -303.6
+      value: -314.1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -47746,7 +47747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -448.8
+      value: 162.1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 18d0394797fdb6149887b7a816373c2d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -52214,7 +52215,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1550146706
+  randomSeed: -201724748
   InitialModule:
     serializedVersion: 3
     enabled: 1
