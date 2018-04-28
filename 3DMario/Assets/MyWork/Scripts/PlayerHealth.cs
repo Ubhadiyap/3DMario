@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.MyWork.Scripts
@@ -41,7 +42,7 @@ namespace Assets.MyWork.Scripts
         private void Die()
         {
             IsDead = true;
-
+            SceneManager.LoadScene(4);
             movementController.enabled = false;
         }
 

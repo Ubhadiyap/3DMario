@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu 3D 1.unity
     guid: 52ca56fc07f7d484f889ae8777091d9a
+  - enabled: 1
+    path: Assets/Scenes/Menu 3D 2.unity
+    guid: efa2106f7aba34541a462a63de221f88
