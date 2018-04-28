@@ -22,6 +22,7 @@ public class ThirdPersonCamera : MonoBehaviour
 		Vector3 dir = new Vector3(0, 0, -distance);
 		Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
 		transform.position = lookAt.position + rotation * dir;
-		transform.LookAt(lookAt.position);
+        transform.rotation = lookAt.rotation;
+        transform.LookAt(lookAt.position);
 	}
 }

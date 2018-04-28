@@ -11,7 +11,7 @@ public class MovementController : MonoBehaviour
     public float rotSpeed;
     public float jumpHeight;
     //walk speed
-    private float w_speed = 0.9f;
+    private float w_speed = 0.3f;
     //rotation speed
     private float rot_speed = 0.5f;
     Rigidbody rb;
